@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NasaService } from './shared/services/nasa.service';
+import { ApiService } from './shared/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +7,9 @@ import { NasaService } from './shared/services/nasa.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  public imgOfTheDay: string;
-  private service: NasaService;
-
-  constructor(nasaService: NasaService) {
-    this.imgOfTheDay = '';
-    this.service = nasaService;
-  }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.service.getImageOfTheDay().subscribe((nasaImg) => {
-      this.imgOfTheDay = nasaImg;
-    });
+    this.apiService.getApiRequest().subscribe((response) => {});
   }
 }
